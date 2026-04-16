@@ -1,1 +1,26 @@
-[]
+{
+  "sun-pharma": {
+    "validBatches": ["BATCH/2024/001", "SUN/24/567", "SUN/2025/001"],
+    "products": ["Azithromycin", "Amoxicillin"]
+  },
+  "cipla": {
+    "validBatches": ["CIP/2024/001", "CIPLA/5678", "CIP/2025/089"],
+    "products": ["Ciprofloxacin", "Azithromycin"]
+  },
+  "dr-reddy": {
+    "validBatches": ["DRL/24001", "REDDY/789", "DRL/2025/123"],
+    "products": ["Omeprazole", "Pantoprazole"]
+  },
+  "lupin": {
+    "validBatches": ["LUP/1122", "LUPIN/9988", "LUP/2025/456"],
+    "products": ["Amoxicillin"]
+  },
+  "aurobindo": {
+    "validBatches": ["AR/2024/101", "AURO/456", "AURO/2025/789"],
+    "products": ["Azithromycin"]
+  },
+  "calcium-health": {
+    "validBatches": ["CAL/VITD3/2025/001", "CH/2025/123", "CALCIUM/001"],
+    "products": ["Calcium and Vitamin D3 Tablets", "Calcium Citrate", "Vitamin D3"]
+  }
+}

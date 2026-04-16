@@ -1,42 +1,42 @@
-[
-  {
-    "id": 1,
-    "name": "Azithromycin",
-    "company": "Sun Pharmaceutical",
-    "dosage": "500mg",
-    "form": "Tablet",
-    "referenceImages": ["sun-pharma_azithromycin.jpg"]
+{
+  "Azithromycin": {
+    "schedule": "H",
+    "scheduleH": true,
+    "requiresPrescription": true,
+    "manufacturers": ["sun-pharma", "cipla", "aurobindo", "lupin"]
   },
-  {
-    "id": 2,
-    "name": "Ciprofloxacin",
-    "company": "Cipla",
-    "dosage": "500mg",
-    "form": "Tablet",
-    "referenceImages": ["cipla_ciprofloxacin.jpg"]
+  "Amoxicillin": {
+    "schedule": "H",
+    "scheduleH": true,
+    "requiresPrescription": true,
+    "manufacturers": ["sun-pharma", "lupin", "cipla"]
   },
-  {
-    "id": 3,
-    "name": "Omeprazole",
-    "company": "Dr. Reddy's",
-    "dosage": "20mg",
-    "form": "Capsule",
-    "referenceImages": ["dr-reddy_omeprazole.jpg"]
+  "Ciprofloxacin": {
+    "schedule": "H",
+    "scheduleH": true,
+    "requiresPrescription": true,
+    "manufacturers": ["cipla", "aurobindo"]
   },
-  {
-    "id": 4,
-    "name": "Amoxicillin",
-    "company": "Lupin",
-    "dosage": "500mg",
-    "form": "Capsule",
-    "referenceImages": ["lupin_amoxicillin.jpg"]
+  "Omeprazole": {
+    "schedule": "H",
+    "scheduleH": true,
+    "requiresPrescription": false,
+    "manufacturers": ["dr-reddy", "sun-pharma"]
   },
-  {
-    "id": 5,
-    "name": "Azithromycin",
-    "company": "Aurobindo Pharma",
-    "dosage": "250mg",
-    "form": "Tablet",
-    "referenceImages": ["aurobind_azithromycin.jpg"]
+  "Paracetamol": {
+    "schedule": "G",
+    "scheduleH": false,
+    "requiresPrescription": false,
+    "manufacturers": ["cipla", "lupin"]
+  },
+  "Calcium and Vitamin D3 Tablets": {
+    "schedule": "G",
+    "scheduleH": false,
+    "requiresPrescription": false,
+    "manufacturers": ["calcium-health"],
+    "composition": "Calcium Carbonate 500mg + Vitamin D3 200IU",
+    "indications": "Bone health, osteoporosis prevention, calcium deficiency",
+    "dosage": "One tablet daily or as directed by physician",
+    "storage": "Store below 30°C, protect from moisture"
   }
-]
+}

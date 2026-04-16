@@ -3,16 +3,26 @@ const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const { Worker } = require('worker_threads');
 require('dotenv').config();
 
+// Import services
+const { initDatabase, createDefaultAdmin } = require('./models/database');
+const { authenticate } = require('./middleware/auth');
+const { initScheduledJobs } = require('./jobs/scheduledJobs');
+const cacheService = require('./services/cacheService');
+
+// Import routes
 const analysisRoutes = require('./routes/analysis');
+const authRoutes = require('./routes/auth');
+const alertRoutes = require('./routes/alerts');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 app.use('/uploads', express.static('uploads'));
 app.use(express.static(path.join(__dirname, 'frontend')));
 
@@ -47,17 +57,44 @@ const upload = multer({
   }
 });
 
-// Routes
-app.use('/api/analysis', upload.single('image'), analysisRoutes);
+// Worker thread pool for image processing
+const workerPool = [];
+const maxWorkers = parseInt(process.env.WORKER_THREADS) || 4;
+
+const getWorker = () => {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker(path.join(__dirname, 'workers', 'imageProcessor.js'));
+    worker.on('message', resolve);
+    worker.on('error', reject);
+    worker.on('exit', (code) => {
+      if (code !== 0) reject(new Error(`Worker stopped with exit code ${code}`));
+    });
+  });
+};
+
+// Make worker pool available
+app.locals.getWorker = getWorker;
+
+// Public Routes
+app.use('/api/auth', authRoutes);
+
+// Protected Routes (require authentication)
+app.use('/api/analysis', authenticate, upload.single('image'), analysisRoutes);
+app.use('/api/alerts', authenticate, alertRoutes);
+
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    message: 'MediCheck API is running',
+    timestamp: new Date().toISOString(),
+    redis: cacheService.isConnected ? 'connected' : 'disconnected'
+  });
+});
 
 // Serve frontend at root
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
-});
-
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'MediCheck API is running' });
 });
 
 // Error handling middleware
@@ -69,8 +106,30 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`MediCheck server running on port ${PORT}`);
-});
+// Initialize server
+const startServer = async () => {
+  try {
+    // Initialize database
+    await initDatabase();
+    console.log('Database initialized');
+
+    // Create default admin
+    await createDefaultAdmin();
+
+    // Start scheduled jobs
+    initScheduledJobs();
+
+    // Start server
+    app.listen(PORT, () => {
+      console.log(`MediCheck server running on port ${PORT}`);
+      console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    });
+  } catch (error) {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  }
+};
+
+startServer();
 
 module.exports = app;

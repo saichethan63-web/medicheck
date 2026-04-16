@@ -38,7 +38,7 @@ class LogoService {
           detected: true,
           company: match,
           source: 'logo_detection',
-          confidence: logo.score,
+          Genuinity: logo.score,
           logoName: logo.description
         };
       }
@@ -52,7 +52,7 @@ class LogoService {
           detected: true,
           company: match,
           source: 'label_detection',
-          confidence: label.score,
+          Genuinity: label.score,
           label: label.description
         };
       }
@@ -65,7 +65,7 @@ class LogoService {
         detected: true,
         company: textMatch.company,
         source: 'text_extraction',
-        confidence: textMatch.confidence,
+        Genuinity: textMatch.Genuinity,
         matchedText: textMatch.matchedText
       };
     }
@@ -74,7 +74,7 @@ class LogoService {
       detected: false,
       company: null,
       source: null,
-      confidence: 0
+      Genuinity: 0
     };
   }
 
@@ -110,7 +110,7 @@ class LogoService {
       if (match) {
         return {
           company: match,
-          confidence: 0.7,
+          Genuinity: 0.7,
           matchedText: line.trim()
         };
       }

@@ -1,0 +1,172 @@
+{
+  "transactions": [
+    {
+      "id": "tx_001",
+      "batchNumber": "AZT/2024/123",
+      "medicineName": "Azithromycin 500mg",
+      "company": "Cipla Ltd.",
+      "action": "VERIFICATION",
+      "location": "Mumbai, Maharashtra",
+      "userId": "admin@medicheck.com",
+      "timestamp": "2026-04-16T10:30:00.000Z",
+      "transactionHash": "0x7f9fade1c0d57a7af66ab4ead79fade1c0d57a7af66ab4ead7c2c2eb7b11a91385",
+      "blockNumber": 18500000,
+      "verified": true,
+      "result": "genuine",
+      "Genuinity": 85
+    }
+  ],
+  "metadata": {
+    "network": "Ethereum (Demo Mode)",
+    "contractAddress": "0x0000000000000000000000000000000000000000",
+    "totalTransactions": 1,
+    "lastBlockNumber": 18500000,
+    "lastUpdated": "2026-04-16T10:30:00.000Z"
+  }
+}{
+  "transactions": [
+    {
+      "id": "tx_001",
+      "batchNumber": "AZT/2024/123",
+      "medicineName": "Azithromycin 500mg",
+      "company": "Cipla Ltd.",
+      "action": "VERIFICATION",
+      "location": "Mumbai, Maharashtra",
+      "userId": "admin@medicheck.com",
+      "timestamp": "2026-04-16T10:30:00.000Z",
+      "transactionHash": "0x7f9fade1c0d57a7af66ab4ead79fade1c0d57a7af66ab4ead7c2c2eb7b11a91385",
+      "blockNumber": 18500000,
+      "verified": true,
+      "result": "genuine",
+      "Genuinity": 85
+    },
+    {
+      "id": "tx_002",
+      "batchNumber": "AMX/2024/456",
+      "medicineName": "Amoxicillin 500mg",
+      "company": "Sun Pharmaceuticals",
+      "action": "ALERT",
+      "location": "Delhi-NCR",
+      "userId": "admin@medicheck.com",
+      "timestamp": "2026-04-15T14:22:00.000Z",
+      "transactionHash": "0x8a8b6c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+      "blockNumber": 18495000,
+      "verified": true,
+      "result": "counterfeit",
+      "alertType": "counterfeit"
+    },
+    {
+      "id": "tx_003",
+      "batchNumber": "PCM/2024/089",
+      "medicineName": "Paracetamol 500mg",
+      "company": "Global Pharma",
+      "action": "ALERT",
+      "location": "Mumbai, Maharashtra",
+      "userId": "admin@medicheck.com",
+      "timestamp": "2026-04-14T09:15:00.000Z",
+      "transactionHash": "0x1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3",
+      "blockNumber": 18490000,
+      "verified": true,
+      "result": "counterfeit",
+      "alertType": "spurious"
+    }
+  ],
+  "metadata": {
+    "network": "Ethereum (Demo Mode)",
+    "contractAddress": "0x0000000000000000000000000000000000000000",
+    "totalTransactions": 3,
+    "lastBlockNumber": 18500000,
+    "lastUpdated": "2026-04-16T10:30:00.000Z"
+  }
+}{
+  "transactions": [
+    {
+      "id": "tx_001",
+      "batchNumber": "AZT/2024/123",
+      "medicineName": "Azithromycin 500mg",
+      "company": "Cipla Ltd.",
+      "action": "VERIFICATION",
+      "location": "Mumbai, Maharashtra",
+      "userId": "admin@medicheck.com",
+      "timestamp": "2026-04-16T10:30:00.000Z",
+      "transactionHash": "0x7f9fade1c0d57a7af66ab4ead79fade1c0d57a7af66ab4ead7c2c2eb7b11a91385",
+      "blockNumber": 18500000,
+      "verified": true,
+      "result": "genuine",
+      "Genuinity": 85
+    },{
+  "BATCH/2024/001": [
+    { "step": "Manufactured", "location": "Sun Pharma, Mumbai", "timestamp": "2024-01-10T08:00:00Z", "hash": "0xabc1" },
+    { "step": "Shipped to Distributor", "location": "Mumbai Warehouse", "timestamp": "2024-01-12T10:30:00Z", "hash": "0xabc2" },
+    { "step": "Received by Dealer", "location": "Delhi Drug Depot", "timestamp": "2024-01-15T14:20:00Z", "hash": "0xabc3" },
+    { "step": "Dispensed to Pharmacist", "location": "City Pharmacy, Delhi", "timestamp": "2024-01-18T09:15:00Z", "hash": "0xabc4" }
+  ],
+  "CIP/2024/001": [
+    { "step": "Manufactured", "location": "Cipla, Goa", "timestamp": "2024-02-05T07:00:00Z", "hash": "0xdef1" },
+    { "step": "Shipped to Distributor", "location": "Goa Logistics", "timestamp": "2024-02-07T12:00:00Z", "hash": "0xdef2" },
+    { "step": "Received by Dealer", "location": "Mumbai Medicos", "timestamp": "2024-02-10T11:30:00Z", "hash": "0xdef3" },
+    { "step": "Dispensed to Pharmacist", "location": "Apollo Pharmacy, Mumbai", "timestamp": "2024-02-12T16:45:00Z", "hash": "0xdef4" }
+  ],
+  "CAL/VITD3/2025/001": [
+    { "step": "Manufactured", "location": "Calcium Health Pharma, Himachal Pradesh", "timestamp": "2025-01-05T09:00:00Z", "hash": "0xca11" },
+    { "step": "Shipped to National Distributor", "location": "Delhi NCR Warehouse", "timestamp": "2025-01-08T14:30:00Z", "hash": "0xca12" },
+    { "step": "Received by Certified Dealer", "location": "Apollo Pharmacy, Mumbai", "timestamp": "2025-01-12T11:45:00Z", "hash": "0xca13" },
+    { "step": "Dispensed to Pharmacist", "location": "City Health Store, Mumbai", "timestamp": "2025-01-15T16:20:00Z", "hash": "0xca14" }
+  ]
+}
+    {
+      "id": "tx_002",
+      "batchNumber": "AMX/2024/456",
+      "medicineName": "Calcium and Vitamin D3 Tablets",
+      "company": "Sun Pharmaceuticals",
+      "action": "ALERT",
+      "location": "Delhi-NCR",
+      "userId": "admin@medicheck.com",
+      "timestamp": "2026-04-15T14:22:00.000Z",
+      "transactionHash": "0x8a8b6c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+      "blockNumber": 18495000,
+      "verified": true,
+      "result": "counterfeit",
+      "alertType": "counterfeit"
+    },
+    {
+      "id": "tx_003",
+      "batchNumber": "PCM/2024/089",
+      "medicineName": "Paracetamol 500mg",
+      "company": "Global Pharma",
+      "action": "ALERT",
+      "location": "Mumbai, Maharashtra",
+      "userId": "admin@medicheck.com",
+      "timestamp": "2026-04-14T09:15:00.000Z",
+      "transactionHash": "0x1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3",
+      "blockNumber": 18490000,
+      "verified": true,
+      "result": "counterfeit",
+      "alertType": "spurious"
+    },
+    {
+      "id": "tx_004",
+      "batchNumber": "AZT/2024/999",
+      "action": "VERIFICATION",
+      "metadata": {
+        "result": "genuine",
+        "medicineName": "Azithromycin",
+        "company": "cipla",
+        "Genuinity": 85
+      },
+      "timestamp": "2026-04-16T21:26:16.031Z",
+      "transactionHash": "0xb0378f02e9834b839e9c7222fc337f40",
+      "blockNumber": 18500004,
+      "verified": true,
+      "result": "genuine",
+      "alertType": null
+    }
+  ],
+  "metadata": {
+    "network": "Ethereum (Demo Mode)",
+    "contractAddress": "0x0000000000000000000000000000000000000000",
+    "totalTransactions": 4,
+    "lastBlockNumber": 18500004,
+    "lastUpdated": "2026-04-16T21:26:16.031Z"
+  }
+}

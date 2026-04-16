@@ -1,0 +1,71 @@
+{
+  "dealers": [
+    {
+      "id": "DL/24/000001",
+      "name": "Apollo Pharmacy",
+      "licenseNumber": "DL/24/000001",
+      "state": "Maharashtra",
+      "city": "Mumbai",
+      "address": "Apollo Pharmacy, Shop No. 1, Ground Floor, City Center, Mumbai",
+      "licenseType": "Retail Drug License",
+      "validFrom": "2024-01-01",
+      "validUntil": "2029-12-31",
+      "isVerified": true,
+      "registeredDate": "2024-01-15"
+    },
+    {
+      "id": "DL/24/000002",
+      "name": "MedPlus Pharmacy",
+      "licenseNumber": "DL/24/000002",
+      "state": "Maharashtra",
+      "city": "Mumbai",
+      "address": "MedPlus, Shop No. 5, Linking Road, Bandra West",
+      "licenseType": "Retail Drug License",
+      "validFrom": "2024-02-01",
+      "validUntil": "2029-01-31",
+      "isVerified": true,
+      "registeredDate": "2024-02-10"
+    },
+    {
+      "id": "DL/24/000003",
+      "name": "Cipla Pharmacy",
+      "licenseNumber": "DL/24/000003",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "address": "Cipla Retail, Connaught Place, New Delhi",
+      "licenseType": "Wholesale Drug License",
+      "validFrom": "2024-03-01",
+      "validUntil": "2029-02-28",
+      "isVerified": true,
+      "registeredDate": "2024-03-05"
+    },
+    {
+      "id": "DL/24/000004",
+      "name": "Sun Pharma Distributors",
+      "licenseNumber": "DL/24/000004",
+      "state": "Karnataka",
+      "city": "Bangalore",
+      "address": "Sun Pharma, MG Road, Bangalore",
+      "licenseType": "Wholesale Drug License",
+      "validFrom": "2024-01-15",
+      "validUntil": "2029-01-14",
+      "isVerified": true,
+      "registeredDate": "2024-01-20"
+    },
+    {
+      "id": "DL/24/000005",
+      "name": "Generic Medical Store",
+      "licenseNumber": "DL/24/000005",
+      "state": "Tamil Nadu",
+      "city": "Chennai",
+      "address": "Generic Medical, T Nagar, Chennai",
+      "licenseType": "Retail Drug License",
+      "validFrom": "2024-04-01",
+      "validUntil": "2029-03-31",
+      "isVerified": false,
+      "registeredDate": null,
+      "notes": "License under verification"
+    }
+  ],
+  "lastUpdated": "2026-04-17T00:00:00.000Z"
+}

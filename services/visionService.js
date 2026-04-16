@@ -47,8 +47,8 @@ class VisionService {
     } catch (error) {
       console.error('Vision API Error:', error.message);
       
-      // Return mock data for development without API key or API errors
-      if (error.message.includes('key') || error.message.includes('credentials') || error.message.includes('No image')) {
+      // Return mock data for development without API key or credentials errors
+      if (error.message.includes('key') || error.message.includes('credentials') || error.message.includes('No image') || error.message.includes('ADC')) {
         return this.getMockVisionResult();
       }
       
@@ -139,7 +139,7 @@ class VisionService {
           return {
             company: name,
             logo: logo.description,
-            confidence: logo.score
+            Genuinity: logo.score
           };
         }
       }

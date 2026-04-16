@@ -46,17 +46,17 @@ class OcrService {
 
       const text = result.data.text;
       const words = result.data.words || [];
-      const confidence = result.data.confidence;
+      const Genuinity = result.data.Genuinity;
 
       // Extract potential medicine-related information
       const extractedData = this.extractMedicineInfo(text);
 
       return {
         rawText: text,
-        confidence,
+        Genuinity,
         words: words.map(w => ({
           text: w.text,
-          confidence: w.confidence,
+          Genuinity: w.Genuinity,
           bbox: w.bbox
         })),
         ...extractedData

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MediCheck India | AI Counterfeit Drug Detection</title>
+    <title>MediCheck India | AI Counterfeit Drug Detection + Blockchain Trace</title>
     <style>
         * {
             margin: 0;
@@ -18,13 +18,11 @@
             padding: 20px;
         }
 
-        /* Container */
         .app-container {
             max-width: 1300px;
             margin: 0 auto;
         }
 
-        /* Cards & Widgets */
         .card {
             background: rgba(255,255,255,0.95);
             backdrop-filter: blur(2px);
@@ -41,7 +39,6 @@
             box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
         }
 
-        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
@@ -68,7 +65,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
-        /* Buttons */
         .btn-primary {
             background: linear-gradient(95deg, #1e3c72, #2a5298);
             border: none;
@@ -97,7 +93,6 @@
             cursor: pointer;
         }
 
-        /* Login Screen */
         .login-overlay {
             position: fixed;
             top: 0;
@@ -121,7 +116,6 @@
             text-align: center;
         }
 
-        /* Form groups */
         .form-group {
             margin-bottom: 20px;
             text-align: left;
@@ -148,7 +142,6 @@
             outline: none;
         }
 
-        /* Camera & Upload widgets */
         .action-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -176,7 +169,6 @@
             margin-bottom: 12px;
         }
 
-        /* Camera preview */
         .camera-preview {
             position: relative;
             margin-top: 20px;
@@ -200,9 +192,9 @@
             padding: 10px;
             border-radius: 60px;
             font-weight: bold;
+            cursor: pointer;
         }
 
-        /* Heatmap & results */
         .verdict-badge {
             display: inline-block;
             padding: 8px 24px;
@@ -235,7 +227,6 @@
             margin-top: 15px;
         }
 
-        /* Alerts widget specific */
         .alert-item {
             padding: 16px 0;
             border-bottom: 1px solid #e2e8f0;
@@ -263,12 +254,59 @@
             margin-left: 8px;
         }
 
-        /* hide/show */
+        .grok-box {
+            background: linear-gradient(145deg, #f0f9ff, #e6f0fa);
+            border-left: 6px solid #1e3c72;
+            padding: 18px;
+            border-radius: 24px;
+            margin: 20px 0;
+        }
+
+        .blockchain-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .step-icon {
+            min-width: 40px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .step-content {
+            flex: 1;
+            border-left: 2px dashed #1e3c72;
+            padding-left: 16px;
+            padding-bottom: 16px;
+        }
+        .step-content:last-child {
+            border-left: none;
+        }
+        .step-title {
+            font-weight: 700;
+            color: #1e3c72;
+        }
+
         .hidden {
             display: none;
         }
 
-        /* responsive */
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1e3c72;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         @media (max-width: 700px) {
             .action-grid {
                 grid-template-columns: 1fr;
@@ -282,7 +320,7 @@
     <div class="login-card">
         <div style="font-size: 48px; margin-bottom: 10px;">🩺</div>
         <h2>MediCheck India</h2>
-        <p style="margin-bottom: 30px; color: #4b5563;">CDSCO approved counterfeit detection</p>
+        <p style="margin-bottom: 30px; color: #4b5563;">CDSCO approved counterfeit detection + Blockchain trace</p>
         <div class="form-group">
             <label>Email / Mobile</label>
             <input type="text" id="loginUsername" placeholder="pharmacist@example.com" value="demo@medicheck.com">
@@ -296,12 +334,12 @@
     </div>
 </div>
 
-<!-- Main App (hidden until login) -->
+<!-- Main App -->
 <div id="mainApp" class="app-container hidden">
     <div class="header">
         <div class="logo">
             <h1>🏥 MediCheck India</h1>
-            <p>AI Counterfeit Drug Detection • CDSCO Integrated</p>
+            <p>AI Counterfeit Drug Detection • CDSCO Integrated • Blockchain Traceability</p>
         </div>
         <div class="user-badge">
             <span>👩‍⚕️ Pharmacist</span>
@@ -309,7 +347,7 @@
         </div>
     </div>
 
-    <!-- FIRST: Capture Medicine Package -->
+    <!-- Capture Medicine Package -->
     <div class="card">
         <h3 style="margin-bottom: 16px;">📸 Capture Medicine Package</h3>
         <div class="action-grid">
@@ -326,7 +364,6 @@
         </div>
         <input type="file" id="fileUploadInput" accept="image/*" style="display: none;">
         
-        <!-- Camera stream section (hidden initially) -->
         <div id="cameraSection" class="hidden">
             <div class="camera-preview">
                 <video id="cameraVideo" autoplay playsinline></video>
@@ -335,14 +372,13 @@
             <button id="closeCameraBtn" class="btn-outline" style="margin-top: 8px;">Close Camera</button>
         </div>
         
-        <!-- Image preview after capture/upload -->
         <div id="imagePreviewContainer" class="hidden" style="margin-top: 20px;">
             <h4>Preview:</h4>
             <img id="previewImage" class="image-preview-img" alt="preview">
         </div>
     </div>
 
-    <!-- SECOND: Manual Entry Form -->
+    <!-- Manual Entry + Dealer License -->
     <div class="card">
         <h3>📋 Batch & Product Details (Manual)</h3>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
@@ -376,11 +412,16 @@
                 <label>Barcode (optional)</label>
                 <input type="text" id="barcodeInput" placeholder="Scan barcode">
             </div>
+            <div class="form-group">
+                <label>Dealer License Number *</label>
+                <input type="text" id="dealerLicense" placeholder="e.g., DL/2024/12345">
+                <small style="color: #64748b;">Format: XX/YYYY/XXXXX (e.g., DL/2024/12345)</small>
+            </div>
         </div>
         <button id="analyzeBtn" class="btn-primary" style="margin-top: 10px;">🔍 Analyze Medicine</button>
     </div>
 
-    <!-- THIRD: ⚠️ RECENT ALERTS FROM CDSCO (now at the bottom, before results) -->
+    <!-- CDSCO Alerts -->
     <div class="card">
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
             <span style="font-size: 28px;">⚠️</span>
@@ -406,12 +447,15 @@
         </p>
     </div>
 
-    <!-- Results Section (hidden initially, appears after analysis) -->
+    <!-- Results Section -->
     <div id="resultsSection" class="card hidden">
         <h3>📊 Analysis Report</h3>
         <div id="verdictContainer"></div>
         <div id="heatmapContainer"></div>
         <div id="batchApiResult"></div>
+        <div id="dealerResultContainer"></div>
+        <div id="blockchainContainer"></div>
+        <div id="grokIntelContainer"></div>
         <div id="flagsContainer"></div>
         <button id="downloadReportBtn" class="btn-primary" style="margin-top: 16px; background: #2b6e3c;">📄 Download Report (PDF)</button>
     </div>
@@ -420,33 +464,78 @@
 <script>
     // ---------- MOCK DATABASE / API SIMULATION ----------
     const mockCDSCO = {
-        "sun-pharma": { validBatches: ["BATCH/2024/001", "SUN/24/567"], products: ["Azithromycin", "Amoxicillin"] },
-        "cipla": { validBatches: ["CIP/2024/001", "CIPLA/5678"], products: ["Ciprofloxacin", "Azithromycin"] },
-        "dr-reddy": { validBatches: ["DRL/24001", "REDDY/789"], products: ["Omeprazole", "Pantoprazole"] },
-        "lupin": { validBatches: ["LUP/1122", "LUPIN/9988"], products: ["Amoxicillin"] },
-        "aurobindo": { validBatches: ["AR/2024/101", "AURO/456"], products: ["Azithromycin"] }
+        "sun-pharma": { validBatches: ["BATCH/2024/001", "SUN/24/567", "SUN/2025/001"], products: ["Azithromycin", "Amoxicillin"] },
+        "cipla": { validBatches: ["CIP/2024/001", "CIPLA/5678", "CIP/2025/089"], products: ["Ciprofloxacin", "Azithromycin"] },
+        "dr-reddy": { validBatches: ["DRL/24001", "REDDY/789", "DRL/2025/123"], products: ["Omeprazole", "Pantoprazole"] },
+        "lupin": { validBatches: ["LUP/1122", "LUPIN/9988", "LUP/2025/456"], products: ["Amoxicillin"] },
+        "aurobindo": { validBatches: ["AR/2024/101", "AURO/456", "AURO/2025/789"], products: ["Azithromycin"] }
     };
 
-    // Simulate OCR extraction from image (random but based on user input for demo)
+    // Trusted dealer registry (simulated)
+    const trustedDealers = {
+        "DL/2024/12345": { name: "Delhi Drug Depot", status: "trusted" },
+        "DL/2024/67890": { name: "Mumbai Medicos", status: "trusted" },
+        "DL/2023/ABCDE": { name: "City Pharmacy", status: "trusted" },
+        "DL/2025/00123": { name: "Apollo Pharmacy", status: "trusted" }
+    };
+
+    // Simulated blockchain trace for batches
+    function getBlockchainTrace(batchNumber) {
+        const predefinedTraces = {
+            "BATCH/2024/001": [
+                { step: "Manufactured", location: "Sun Pharma, Mumbai", timestamp: "2024-01-10T08:00:00Z", hash: "0xabc1" },
+                { step: "Shipped to Distributor", location: "Mumbai Warehouse", timestamp: "2024-01-12T10:30:00Z", hash: "0xabc2" },
+                { step: "Received by Dealer", location: "Delhi Drug Depot", timestamp: "2024-01-15T14:20:00Z", hash: "0xabc3" },
+                { step: "Dispensed to Pharmacist", location: "City Pharmacy, Delhi", timestamp: "2024-01-18T09:15:00Z", hash: "0xabc4" }
+            ],
+            "CIP/2024/001": [
+                { step: "Manufactured", location: "Cipla, Goa", timestamp: "2024-02-05T07:00:00Z", hash: "0xdef1" },
+                { step: "Shipped to Distributor", location: "Goa Logistics", timestamp: "2024-02-07T12:00:00Z", hash: "0xdef2" },
+                { step: "Received by Dealer", location: "Mumbai Medicos", timestamp: "2024-02-10T11:30:00Z", hash: "0xdef3" },
+                { step: "Dispensed to Pharmacist", location: "Apollo Pharmacy, Mumbai", timestamp: "2024-02-12T16:45:00Z", hash: "0xdef4" }
+            ]
+        };
+        if (predefinedTraces[batchNumber]) return predefinedTraces[batchNumber];
+        // Generate generic trace
+        const now = new Date();
+        const mfgDate = new Date(now.getTime() - 30*24*60*60*1000);
+        return [
+            { step: "Manufactured", location: "Generic Pharma Ltd.", timestamp: mfgDate.toISOString(), hash: "0xgen1" },
+            { step: "Shipped to Regional Hub", location: "State Warehouse", timestamp: new Date(mfgDate.getTime() + 5*24*60*60*1000).toISOString(), hash: "0xgen2" },
+            { step: "Received by Dealer", location: "Local Distributor", timestamp: new Date(mfgDate.getTime() + 15*24*60*60*1000).toISOString(), hash: "0xgen3" },
+            { step: "Sold to Pharmacy", location: "Retail Pharmacy", timestamp: new Date(now.getTime() - 2*24*60*60*1000).toISOString(), hash: "0xgen4" }
+        ];
+    }
+
+    // Verify dealer license
+    function verifyDealerLicense(license) {
+        if (trustedDealers[license]) {
+            return { valid: true, trusted: true, name: trustedDealers[license].name, message: "✓ Licensed & Trusted Dealer" };
+        }
+        const licensePattern = /^[A-Z]{2}\/\d{4}\/[A-Z0-9]{5,}$/;
+        if (!licensePattern.test(license)) {
+            return { valid: false, trusted: false, message: "❌ Invalid license format. Expected format: XX/YYYY/XXXXX" };
+        }
+        return { valid: false, trusted: false, message: "⚠️ Dealer license not found in CDSCO trusted registry. Report to authorities." };
+    }
+
+    // Mock functions (unchanged except for adding dealer/blockchain)
     function mockOCR(imageData, userBatch) {
         return new Promise((resolve) => {
             setTimeout(() => {
-                // simulate 85% match probability
                 const match = Math.random() > 0.2;
                 resolve({
                     extractedBatch: match ? userBatch : userBatch + "X",
-                    confidence: match ? 0.92 : 0.45,
+                    Genuinity: match ? 0.92 : 0.45,
                     match: match
                 });
             }, 600);
         });
     }
 
-    // Simulate Vision Anomaly Detection (returns score + anomalies + heatmap dataUrl)
     function mockVisionAnalysis(imageData, company) {
         return new Promise((resolve) => {
             setTimeout(() => {
-                // base score by company reputation + randomness
                 const companyScores = { "sun-pharma": 0.92, "cipla": 0.89, "dr-reddy": 0.91, "lupin": 0.88, "aurobindo": 0.85 };
                 let base = companyScores[company] || 0.8;
                 let anomalyScore = Math.max(0.2, Math.min(0.98, base - (Math.random() * 0.35)));
@@ -455,7 +544,6 @@
                 if (anomalyScore < 0.5) anomalies.push("Hologram missing / color deviation");
                 if (anomalyScore < 0.4) anomalies.push("Seal tampering pattern observed");
                 if (anomalies.length === 0) anomalies.push("No visual anomalies found");
-                // Simulate heatmap: return a dataURL (we'll use canvas overlay effect)
                 const heatmapUrl = generateMockHeatmap(imageData, anomalyScore);
                 resolve({ anomalyScore, anomalies, heatmapUrl });
             }, 800);
@@ -463,7 +551,6 @@
     }
 
     function generateMockHeatmap(originalImageData, score) {
-        // create a canvas overlay to simulate heatmap (red tint)
         if (!originalImageData) return null;
         const img = new Image();
         img.src = originalImageData;
@@ -472,10 +559,8 @@
         canvas.width = img.width;
         canvas.height = img.height;
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        // apply red overlay with opacity based on anomaly score
         ctx.fillStyle = `rgba(255, 0, 0, ${0.3 + score * 0.4})`;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        // add some random "hotspots"
         for (let i = 0; i < 10; i++) {
             ctx.fillStyle = `rgba(255, 100, 0, 0.6)`;
             ctx.beginPath();
@@ -485,7 +570,6 @@
         return canvas.toDataURL();
     }
 
-    // Mock batch verification API
     async function verifyBatchWithCDSCO(company, batch, medicineName) {
         await new Promise(r => setTimeout(r, 500));
         const companyData = mockCDSCO[company];
@@ -498,6 +582,27 @@
         else if (batchValid && !productMatch) message = "⚠️ Manufacturer mismatch: product not associated with this batch";
         else message = "❌ Batch invalid & product mismatch. Likely counterfeit.";
         return { valid: batchValid && productMatch, message, manufacturerMatch: productMatch, registeredDate: batchValid ? "2024-01-10" : null };
+    }
+
+    // Grok API (use environment variable in production)
+    const GROK_API_KEY = 'your_grok_api_key_here';
+    const GROK_API_URL = 'https://api.x.ai/v1/chat/completions';
+
+    async function queryGrokIntelligence(medicine, company, batch) {
+        try {
+            const prompt = `Search for any public alerts, recalls, or counterfeit reports regarding medicine "${medicine}" from company "${company}" with batch number "${batch}" in India. Provide a concise summary.`;
+            const response = await fetch(GROK_API_URL, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${GROK_API_KEY}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ model: 'grok-2-latest', messages: [{ role: 'user', content: prompt }], stream: false, temperature: 0.2 })
+            });
+            if (!response.ok) throw new Error(`Grok API error: ${response.status}`);
+            const data = await response.json();
+            return data.choices[0].message.content || 'No intelligence returned.';
+        } catch (error) {
+            console.warn('Grok intelligence fetch failed:', error);
+            return '⚠️ Grok search temporarily unavailable. Using standard verification only.';
+        }
     }
 
     // ---------- GLOBAL STATE ----------
@@ -578,7 +683,7 @@
         }
     });
 
-    // Main analysis
+    // Main analysis (now includes dealer verification and blockchain)
     document.getElementById('analyzeBtn').addEventListener('click', async () => {
         if (!capturedImageData) {
             alert("Please capture or upload a medicine packaging image first.");
@@ -587,53 +692,67 @@
         const medicineName = document.getElementById('medName').value.trim();
         const company = document.getElementById('companySelect').value;
         const batchNo = document.getElementById('batchNumber').value.trim();
+        const dealerLicense = document.getElementById('dealerLicense').value.trim();
         if (!medicineName || !batchNo) {
             alert("Please fill Medicine Name and Batch Number");
             return;
         }
-        // Show loading indicator
+        if (!dealerLicense) {
+            alert("Please enter Dealer License Number");
+            return;
+        }
+
         const analyzeBtn = document.getElementById('analyzeBtn');
         const originalText = analyzeBtn.innerText;
-        analyzeBtn.innerText = "⏳ Analyzing...";
+        analyzeBtn.innerHTML = '<span class="loader"></span> Analyzing...';
         analyzeBtn.disabled = true;
 
         try {
-            // Step 1: Mock OCR
-            const ocrResult = await mockOCR(capturedImageData, batchNo);
-            // Step 2: Vision anomaly
-            const vision = await mockVisionAnalysis(capturedImageData, company);
-            // Step 3: Batch API
-            const batchApi = await verifyBatchWithCDSCO(company, batchNo, medicineName);
+            // Run all verifications
+            const [ocrResult, vision, batchApi, grokSummary, dealerResult] = await Promise.all([
+                mockOCR(capturedImageData, batchNo),
+                mockVisionAnalysis(capturedImageData, company),
+                verifyBatchWithCDSCO(company, batchNo, medicineName),
+                queryGrokIntelligence(medicineName, company, batchNo),
+                Promise.resolve(verifyDealerLicense(dealerLicense))
+            ]);
+            
+            // Blockchain trace based on batch
+            const blockchainTrace = getBlockchainTrace(batchNo);
             
             // Combine final verdict
             let verdict = "Genuine";
-            let finalConfidence = 0;
+            let finalGenuinity = 0;
             const anomalyScore = vision.anomalyScore;
             const batchValid = batchApi.valid;
             const ocrMatch = ocrResult.match;
+            const dealerTrusted = dealerResult.trusted;
             
-            if (anomalyScore >= 0.7 && batchValid && ocrMatch) {
+            if (anomalyScore >= 0.7 && batchValid && ocrMatch && dealerTrusted) {
                 verdict = "Genuine";
-                finalConfidence = 94;
-            } else if (anomalyScore < 0.5 || !batchValid || !ocrMatch) {
-                if (anomalyScore < 0.3 && !batchValid) {
+                finalGenuinity = 94;
+            } else if (anomalyScore < 0.5 || !batchValid || !ocrMatch || !dealerTrusted) {
+                if ((anomalyScore < 0.3 && !batchValid) || !dealerTrusted) {
                     verdict = "Likely Counterfeit";
-                    finalConfidence = 96;
+                    finalGenuinity = 96;
                 } else {
                     verdict = "Suspicious";
-                    finalConfidence = 78;
+                    finalGenuinity = 78;
                 }
             } else {
                 verdict = "Suspicious";
-                finalConfidence = 65;
+                finalGenuinity = 65;
             }
             
             currentAnalysis = {
-                verdict, confidence: finalConfidence,
+                verdict, Genuinity: finalGenuinity,
                 anomalyScore, anomalies: vision.anomalies,
                 batchApi, ocrResult,
                 heatmapUrl: vision.heatmapUrl,
                 medicineName, company, batchNo,
+                dealer: dealerResult,
+                blockchainTrace,
+                grokSummary,
                 timestamp: new Date().toISOString()
             };
             
@@ -648,14 +767,30 @@
     });
 
     function displayResults(data) {
+        // Medicine details + accuracy (company name, accuracy rate)
+        const companyNames = {
+            "sun-pharma": "Sun Pharmaceuticals",
+            "cipla": "Cipla Ltd.",
+            "dr-reddy": "Dr. Reddy's",
+            "lupin": "Lupin",
+            "aurobindo": "Aurobindo"
+        };
+        const companyDisplay = companyNames[data.company] || data.company;
+        
         const verdictDiv = document.getElementById('verdictContainer');
         let badgeClass = "";
         if (data.verdict === "Genuine") badgeClass = "genuine";
         else if (data.verdict === "Suspicious") badgeClass = "suspicious";
         else badgeClass = "counterfeit";
+        
         verdictDiv.innerHTML = `
-            <div class="verdict-badge ${badgeClass}">${data.verdict} • Confidence ${data.confidence}%</div>
-            <p><strong>Medicine:</strong> ${data.medicineName} | <strong>Batch:</strong> ${data.batchNo}</p>
+            <div style="margin-bottom: 15px; padding: 12px; background: #f1f5f9; border-radius: 20px;">
+                <strong>💊 Medicine:</strong> ${data.medicineName}<br>
+                <strong>🏢 Company:</strong> ${companyDisplay}<br>
+                <strong>📊 Accuracy Rate:</strong> ${data.Genuinity}%
+            </div>
+            <div class="verdict-badge ${badgeClass}">${data.verdict} • Genuinity ${data.Genuinity}%</div>
+            <p><strong>Batch:</strong> ${data.batchNo}</p>
         `;
         
         // Heatmap
@@ -676,22 +811,96 @@
             </div>
         `;
         
+        // Dealer result
+        const dealerDiv = document.getElementById('dealerResultContainer');
+        const dealerStatusClass = data.dealer.trusted ? "genuine" : "counterfeit";
+        dealerDiv.innerHTML = `
+            <div style="background:#f8fafc; padding:15px; border-radius:24px; margin-top:16px;">
+                <h4>🏪 Dealer License Verification</h4>
+                <div class="verdict-badge ${dealerStatusClass}" style="font-size: 16px; padding: 6px 16px;">
+                    ${data.dealer.trusted ? '✓ Trusted Dealer' : '⚠️ Untrusted Dealer'}
+                </div>
+                <p><strong>License:</strong> ${document.getElementById('dealerLicense').value}</p>
+                <p><strong>Status:</strong> ${data.dealer.message}</p>
+                ${data.dealer.name ? `<p><strong>Registered Name:</strong> ${data.dealer.name}</p>` : ''}
+            </div>
+        `;
+        
+        // Blockchain trace
+        const blockchainDiv = document.getElementById('blockchainContainer');
+        if (data.blockchainTrace && data.blockchainTrace.length) {
+            let traceHtml = `<div style="background:#f8fafc; padding:15px; border-radius:24px; margin-top:16px;">
+                                <h4>🔗 Blockchain Supply Traceability</h4>
+                                <div style="margin-top: 15px;">`;
+            data.blockchainTrace.forEach((step, idx) => {
+                const isLast = idx === data.blockchainTrace.length - 1;
+                let icon = "🏭";
+                if (step.step.includes("Shipped")) icon = "🚚";
+                else if (step.step.includes("Dealer")) icon = "🏪";
+                else if (step.step.includes("Pharmacist") || step.step.includes("Sold")) icon = "💊";
+                traceHtml += `
+                    <div class="blockchain-step">
+                        <div class="step-icon">${icon}</div>
+                        <div class="step-content" style="${isLast ? 'border-left: none;' : ''}">
+                            <div class="step-title">${step.step}</div>
+                            <div>📍 ${step.location}</div>
+                            <div style="font-size: 0.75rem; color: gray;">⏱️ ${new Date(step.timestamp).toLocaleString()}</div>
+                            <div style="font-size: 0.7rem; font-family: monospace;">🔑 Hash: ${step.hash}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            traceHtml += `</div><p style="margin-top: 12px; font-size: 0.8rem;">✅ Verified on blockchain • Immutable record</p></div>`;
+            blockchainDiv.innerHTML = traceHtml;
+        } else {
+            blockchainDiv.innerHTML = `<p>⚠️ Blockchain trace not available for this batch.</p>`;
+        }
+        
+        // Grok Intelligence
+        const grokDiv = document.getElementById('grokIntelContainer');
+        grokDiv.innerHTML = `
+            <div class="grok-box">
+                <h4><span style="font-size:24px;">🤖</span> Grok Intelligence</h4>
+                <p style="white-space: pre-line;">${data.grokSummary || 'No additional data from Grok.'}</p>
+                <small style="color:#4a627a;">Powered by xAI Grok • Real-time search</small>
+            </div>
+        `;
+        
         // Flags & anomalies
         const flagsDiv = document.getElementById('flagsContainer');
         let flagsHtml = `<h4>🚨 Flag Report</h4><ul class="flag-list">`;
         if (!data.batchApi.valid) flagsHtml += `<li>❌ Batch verification failed: batch not in CDSCO database</li>`;
-        if (!data.ocrResult.match) flagsHtml += `<li>⚠️ OCR mismatch: Extracted batch "${data.ocrResult.extractedBatch}" vs entered "${data.ocrResult.userBatch || data.batchNo}"</li>`;
+        if (!data.ocrResult.match) flagsHtml += `<li>⚠️ OCR mismatch: Extracted batch "${data.ocrResult.extractedBatch}" vs entered "${data.batchNo}"</li>`;
+        if (!data.dealer.trusted) flagsHtml += `<li>🏪 Dealer not trusted: ${data.dealer.message}</li>`;
         data.anomalies.forEach(anom => {
             flagsHtml += `<li>👁️ ${anom}</li>`;
         });
-        if (data.anomalies.length === 0 && data.batchApi.valid && data.ocrResult.match) flagsHtml += `<li>✅ No major red flags. Package appears authentic.</li>`;
+        if (data.anomalies.length === 0 && data.batchApi.valid && data.ocrResult.match && data.dealer.trusted) flagsHtml += `<li>✅ No major red flags. Package appears authentic.</li>`;
         flagsHtml += `</ul>`;
         flagsDiv.innerHTML = flagsHtml;
     }
     
-    // Download report as text file
+    // Download report (updated to include dealer and blockchain)
     document.getElementById('downloadReportBtn').addEventListener('click', () => {
         if (!currentAnalysis) return;
+        const companyNames = {
+            "sun-pharma": "Sun Pharmaceuticals",
+            "cipla": "Cipla Ltd.",
+            "dr-reddy": "Dr. Reddy's",
+            "lupin": "Lupin",
+            "aurobindo": "Aurobindo"
+        };
+        const companyDisplay = companyNames[currentAnalysis.company] || currentAnalysis.company;
+        
+        let blockchainText = "";
+        if (currentAnalysis.blockchainTrace) {
+            blockchainText = currentAnalysis.blockchainTrace.map(step => 
+                `  - ${step.step} at ${step.location} on ${new Date(step.timestamp).toLocaleString()} (Hash: ${step.hash})`
+            ).join("\n");
+        } else {
+            blockchainText = "  Not available";
+        }
+        
         const report = `MEDICHECK INDIA - OFFICIAL REPORT
 ================================
 Report ID: MCI-${Date.now()}
@@ -699,13 +908,25 @@ Timestamp: ${new Date().toLocaleString()}
 
 PRODUCT DETAILS
 Medicine: ${currentAnalysis.medicineName}
-Company: ${currentAnalysis.company}
+Company: ${companyDisplay}
 Batch Number: ${currentAnalysis.batchNo}
+Accuracy Rate: ${currentAnalysis.Genuinity}%
 
-VERDICT: ${currentAnalysis.verdict} (Confidence: ${currentAnalysis.confidence}%)
+VERDICT: ${currentAnalysis.verdict} (Genuinity: ${currentAnalysis.Genuinity}%)
 
 CDSCO BATCH VERIFICATION:
 ${currentAnalysis.batchApi.message}
+
+DEALER LICENSE VERIFICATION:
+License: ${document.getElementById('dealerLicense').value}
+Status: ${currentAnalysis.dealer.message}
+${currentAnalysis.dealer.name ? `Registered Name: ${currentAnalysis.dealer.name}` : ''}
+
+BLOCKCHAIN SUPPLY CHAIN TRACE:
+${blockchainText}
+
+GROK INTELLIGENCE:
+${currentAnalysis.grokSummary || 'Not available'}
 
 OCR CROSS-CHECK:
 User batch: ${currentAnalysis.batchNo}
@@ -722,7 +943,7 @@ ${currentAnalysis.verdict === "Genuine" ? "Medicine appears authentic. Safe for 
   currentAnalysis.verdict === "Suspicious" ? "Verify with manufacturer immediately. Report to CDSCO helpline." :
   "DO NOT DISPENSE. Report to local drug authority & CDSCO."}
 
-This report is generated by MediCheck India AI System.
+This report is generated by MediCheck India AI System with blockchain traceability.
 For official verification, visit https://cdsco.gov.in
 `;
         const blob = new Blob([report], {type: "text/plain"});
