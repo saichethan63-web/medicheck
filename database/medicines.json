@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Azithromycin",
+    "company": "Sun Pharmaceutical",
+    "dosage": "500mg",
+    "form": "Tablet",
+    "referenceImages": ["sun-pharma_azithromycin.jpg"]
+  },
+  {
+    "id": 2,
+    "name": "Ciprofloxacin",
+    "company": "Cipla",
+    "dosage": "500mg",
+    "form": "Tablet",
+    "referenceImages": ["cipla_ciprofloxacin.jpg"]
+  },
+  {
+    "id": 3,
+    "name": "Omeprazole",
+    "company": "Dr. Reddy's",
+    "dosage": "20mg",
+    "form": "Capsule",
+    "referenceImages": ["dr-reddy_omeprazole.jpg"]
+  },
+  {
+    "id": 4,
+    "name": "Amoxicillin",
+    "company": "Lupin",
+    "dosage": "500mg",
+    "form": "Capsule",
+    "referenceImages": ["lupin_amoxicillin.jpg"]
+  },
+  {
+    "id": 5,
+    "name": "Azithromycin",
+    "company": "Aurobindo Pharma",
+    "dosage": "250mg",
+    "form": "Tablet",
+    "referenceImages": ["aurobind_azithromycin.jpg"]
+  }
+]
